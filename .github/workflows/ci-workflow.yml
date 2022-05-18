@@ -39,7 +39,7 @@ jobs:
         env:
           CI: true
 
-   build-push-image:
+  build-push-image:
     runs-on: ubuntu-latest
     needs: test
     name: build and push Docker Image
