@@ -40,3 +40,24 @@ jobs:
           npm test
         env:
           CI: true
+
+   build-push-image:
+    runs-on: ubuntu-latest
+    needs: test
+    name: build and push Docker Image
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Download artifact
+      uses: actions/download-artifact@main
+      with:
+        name: webpack artifacts
+        path: public
+    - name: Build image
+      uses: docker/build-push-action@v2
+      with:
+        username: ${{github.actor}}
+        password: ${{secrets.DOCKER_TOKEN}}
+        registry: docker.pkg.github.com
+        repository: pabloperfer/devops-p8/pabloimage
+        tag_with_sha: true
