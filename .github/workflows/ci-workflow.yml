@@ -57,7 +57,7 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         username: ${{github.actor}}
-        password: ${{secrets.DOCKER_TOKEN}}
+        password: ${{secrets.GITHUB_TOKEN}}
         registry: docker.pkg.github.com
         repository: pabloperfer/devops-p8/pabloimage
         tag_with_sha: true
